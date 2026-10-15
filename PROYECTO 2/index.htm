@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Control de Notas Académicas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Control de Notas Académicas</h1>
+
+    <!-- SECCIÓN 1: FORMULARIO Y CÁLCULO -->
+    <section class="card">
+      <h2>Ingreso de Notas</h2>
+      <form id="formNotas">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo:</label>
+          <input type="text" id="nombre" required placeholder="Ej. Carlos López">
+        </div>
+
+        <div class="form-group">
+          <label for="nie">NIE:</label>
+          <input type="text" id="nie" required placeholder="Ej. 12345678">
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="nota1">Nota 1:</label>
+            <input type="number" id="nota1" step="0.1" min="0" max="10" required>
+          </div>
+          <div class="form-group">
+            <label for="nota2">Nota 2:</label>
+            <input type="number" id="nota2" step="0.1" min="0" max="10" required>
+          </div>
+          <div class="form-group">
+            <label for="nota3">Nota 3:</label>
+            <input type="number" id="nota3" step="0.1" min="0" max="10" required>
+          </div>
+          <div class="form-group">
+            <label for="examen">Examen:</label>
+            <input type="number" id="examen" step="0.1" min="0" max="10" required>
+          </div>
+        </div>
+
+        <div id="errorMsg" class="error-msg"></div>
+
+        <button type="submit" id="btnCalcular">Calcular y Guardar Registro</button>
+      </form>
+
+      <!-- Resultado del cálculo -->
+      <div id="resultadoCard" class="result-card hidden">
+        <h3>Resultado</h3>
+        <p><strong>ESTUDIANTE:</strong> <span id="resNombre"></span></p>
+        <p><strong>NIE:</strong> <span id="resNie"></span></p>
+        <p><strong>Promedio:</strong> <span id="resPromedio"></span></p>
+        <p><strong>Resultado:</strong> <span id="resClasificacion" class="badge"></span></p>
+      </div>
+
+      <button id="btnDescargar" class="btn-secondary hidden">Descargar notas.txt</button>
+    </section>
+
+    <!-- SECCIÓN 2: CONSULTA DEL ARCHIVO -->
+    <section class="card">
+      <h2>Consultar Notas</h2>
+      <div class="form-group">
+        <label for="fileInput">Seleccionar archivo notas.txt:</label>
+        <input type="file" id="fileInput" accept=".txt">
+      </div>
+      <button id="btnMostrar" type="button">Mostrar Registros</button>
+
+      <!-- Tabla de Registros -->
+      <div id="tablaContainer" class="hidden">
+        <table id="tablaNotas">
+          <thead>
+            <tr>
+              <th>NIE</th>
+              <th>Estudiante</th>
+              <th>Promedio</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyNotas">
+          </tbody>
+        </table>
+
+        <!-- Reto Adicional: Estadísticas -->
+        <div class="stats-card">
+          <p><strong>Total de estudiantes:</strong> <span id="statTotal">0</span></p>
+          <p><strong>Aprobados:</strong> <span id="statAprobados" class="text-success">0</span></p>
+          <p><strong>Reprobados:</strong> <span id="statReprobados" class="text-danger">0</span></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
