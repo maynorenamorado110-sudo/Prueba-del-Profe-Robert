@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería Escolar - Sistema de Pedidos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍔 CAFETERÍA ESCOLAR ☕</h1>
+            <p>Sistema de Registro de Pedidos</p>
+        </header>
+
+        <main>
+            <!-- Formulario de Pedido -->
+            <section class="card">
+                <h2>Nuevo Pedido</h2>
+                <form id="pedidoForm">
+                    <div class="form-group">
+                        <label for="cliente">Cliente:</label>
+                        <input type="text" id="cliente" required placeholder="Nombre del cliente">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="producto">Producto:</label>
+                        <select id="producto" required>
+                            <option value="" disabled selected>Seleccione un producto</option>
+                            <option value="P001|Pupusa|0.75">P001 - Pupusa ($0.75)</option>
+                            <option value="P002|Hamburguesa|2.50">P002 - Hamburguesa ($2.50)</option>
+                            <option value="P003|Pizza|2.00">P003 - Pizza ($2.00)</option>
+                            <option value="P004|Taco|1.50">P004 - Taco ($1.50)</option>
+                            <option value="P005|Jugo|1.00">P005 - Jugo ($1.00)</option>
+                            <option value="P006|Agua|0.75">P006 - Agua ($0.75)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" min="1" required placeholder="Ej. 5">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Método de pago:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="pago" value="Efectivo" checked> Efectivo</label>
+                            <label><input type="radio" name="pago" value="Tarjeta"> Tarjeta</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">REALIZAR PEDIDO</button>
+                </form>
+            </section>
+
+            <!-- Ticket del Pedido Reciente -->
+            <section class="card ticket-card" id="ticketSection" style="display: none;">
+                <h2>Comprobante</h2>
+                <pre id="ticketOutput"></pre>
+            </section>
+
+            <!-- Consulta y Resumen de Pedidos -->
+            <section class="card">
+                <div class="actions-header">
+                    <h2>Historial de Pedidos</h2>
+                    <div class="btn-container">
+                        <button id="btnCargarTxt" class="btn-secondary">CARGAR PEDIDOS.TXT</button>
+                        <button id="btnResumen" class="btn-accent">📊 RESUMEN</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tablaPedidos">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Cliente</th>
+                                <th>Producto</th>
+                                <th>Cant.</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se llena dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Simulación de Contenido de pedidos.txt -->
+                <div class="txt-preview">
+                    <h3>Vista de <code>pedidos.txt</code></h3>
+                    <textarea id="pedidosTxtContent" readonly placeholder="Los registros aparecerán aquí..."></textarea>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para el Reto Adicional (Resumen de Ventas) -->
+    <div id="resumenModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <pre id="resumenOutput"></pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
